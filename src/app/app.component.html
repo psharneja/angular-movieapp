@@ -20,7 +20,6 @@
                </section>
                     <section class="second">
                         <span class="fa fa-film fa-2x"></span>
-                        <span>{{movie.genre_ids}}</span>
                         <span>{{replacer(movie.genre_ids)}}</span>
                         <div class="pull-right">
                         <a class="btn btn-default" alt="Remove from Favourites"><span class="fa fa-star-o" aria-hidden="true"></span></a>
@@ -38,7 +37,7 @@
     <label>Details: </label><span> {{selected_movie.overview}}</span><br>
     <label>18+: </label><span> {{selected_movie.adult}}</span><br>
     <label>Release Date: </label><span> {{selected_movie.release_date}}</span><br>
-    <label>Type/ Genre: </label><span> {{selected_movie.genre_ids}}</span><br>
+    <label>Type/ Genre: </label><span> {{replacer(movie.genre_ids)}}</span><br>
     <label>Score:</label><span> {{selected_movie.vote_average}}</span>
 
 
