@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+header {
+    height: 70px;
+    background-color: #00bcd4;
+    text-align: center;
+}
+
+header div {
+    padding: 10px;
+    color: white;
+    font-size: 3em;
+}
+
+
