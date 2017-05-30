@@ -6,6 +6,7 @@
     text-align: center;
 }
 
+
 .boundingbox {
     margin: auto;
     width: 30%;
@@ -100,6 +101,6 @@ label, h1 {
 }
 
 .cover_photo {
-
+    max-width: 600px;
 
 }

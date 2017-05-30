@@ -1,6 +1,8 @@
 import {Component, Input, NgModule} from '@angular/core';
 import {JsonpModule, Jsonp} from '@angular/http';
 import {BrowserModule} from '@angular/platform-browser';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+
 
 const genres = [
     {
@@ -92,14 +94,15 @@ export class AppComponent {
     selected_movie = {};
     genredata = {};
     moviedata: any[];
+    pager= 1;
 
     @Input('placeholder')
     text = 'Search for a movie here...';
     constructor(private jsonp: Jsonp) {  }
     search(movie) {
         if (movie.value) {
-            const url = `https://api.themoviedb.org/3/search/movie?api_key=adc95135c737e8edc1358685af9a1c52&
-            language=en-US&query=${encodeURIComponent(movie.value)}&callback=JSONP_CALLBACK`;
+            const url = `https://api.themoviedb.org/3/search/movie?api_key=adc95135c737e8edc1358685af9a1c52&language=en-US&query=
+            ${encodeURIComponent(movie.value)}&page=${this.pager}&callback=JSONP_CALLBACK`;
             return this.jsonp.get(url).subscribe(data => {this.moviedata = data.json().results; });
         }
     }
@@ -114,16 +117,27 @@ export class AppComponent {
     replacer(genre) {
 //   var arr[];
         const convertedData = [];
-        genre.forEach(function(data, i ){
-            genres.forEach(function(d, j ){
-                if ( d.id === data) {
+        if (genre) {
+        genre.forEach(function (data, i) {
+            genres.forEach(function (d, j) {
+                if (d.id === data) {
                     convertedData.push(d.name);
 
                 }
             });
 
-        })
+        });
+    }
         return convertedData;
+    }
+    onScroll(movie, moviedata) {
+        console.log(moviedata);
+
+        const url = `https://api.themoviedb.org/3/search/movie?api_key=adc95135c737e8edc1358685af9a1c52&language=en-US&query=
+            ${encodeURIComponent(movie.value)}&page=${this.pager++}&callback=JSONP_CALLBACK`;
+        return this.jsonp.get(url).subscribe(data => {this.moviedata.push(data.json().results); });
+
+
     }
 }
 

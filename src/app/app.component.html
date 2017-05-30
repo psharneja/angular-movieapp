@@ -1,28 +1,34 @@
 <div class="background" >
+
         <nav>
             <a class="btn btn-default" *ngIf="(selected_movie | json) != ({} | json)" (click)="clearselection();"><span class="fa fa-undo"></span> go back...</a>
             <a  class="btn btn-primary" routerLink="/dashboard" routerLinkActive="active">Search</a>
             <a  class="btn btn-primary" routerLink="/heroes" routerLinkActive="active">Favourites</a>
         </nav>
     <div class="boundingbox">
-    <input #movie placeholder="{{text}}"  class="form-control" #box>
+    <input #movie placeholder="{{text}}"  class="form-control" >
     <button class="btn btn-success " (click)="search(movie)"><span class="fa fa-search"> Search...</span></button>
     </div>
 </div>
-<div id="movie_listing" class="container" *ngIf="(selected_movie | json) === ({} | json)">
+<div id="movie_listing" class="container" *ngIf="(selected_movie | json) === ({} | json)" infiniteScroll
+     [infiniteScrollDistance]="1"
+     [infiniteScrollThrottle]="800"
+     (scrolled)="onScroll(movie, moviedata)">
     <ul *ngIf="moviedata">
         <li *ngFor="let movie of moviedata" >
             <div class="col-sm-6">
                <section class="first">
                <span class="title-tag" (click)="onSelect(movie)"><a >{{movie.title}}</a></span>
-          <a><img class="poster" [src]="'https://image.tmdb.org/t/p/w300'+movie.poster_path"   alt={{movie.original_title}}  (click)="onSelect(movie)" ></a>
+          <a><img class="poster" [src]="'https://image.tmdb.org/t/p/w300'+movie.poster_path"   alt={{movie.original_title}}  (click)="onSelect(movie)" onError="this.src='assets/images/bg.jpg';" ></a>
             <p class="overview">{{movie.overview}}</p>
                </section>
                     <section class="second">
                         <span class="fa fa-film fa-2x"></span>
                         <span>{{replacer(movie.genre_ids)}}</span>
+
                         <div class="pull-right">
-                        <a class="btn btn-default" alt="Remove from Favourites"><span class="fa fa-star-o" aria-hidden="true"></span></a>
+                           <!-- <a class="btn btn-info" alt="Remove from Favourites" (click)="onSelect(movie)">know more...</a>
+                        --><a class="btn btn-default" alt="Remove from Favourites"><span class="fa fa-star-o" aria-hidden="true"></span></a>
                         <a class="btn btn-success" alt="Add to Favourites"><span class="fa fa-star" aria-hidden="true"></span></a>
                     </div>
                 </section>
@@ -32,15 +38,11 @@
     <div *ngIf="!moviedata" class="nodata">Type a word to search...</div>
 </div>
 <div class="container" *ngIf="(selected_movie | json) != ({} | json)" >
-    <a><img class="cover_photo" [src]="'https://image.tmdb.org/t/p/w500'+selected_movie.backdrop_path"   alt={{selected_movie.original_title}}  (click)="onSelect(movie)" ></a>
+    <a><img class="cover_photo" [src]="'https://image.tmdb.org/t/p/w500'+selected_movie.backdrop_path"   alt={{selected_movie.original_title}}  onError="this.src='assets/images/bg.jpg';" (click)="onSelect(movie)" ></a>
     <h1>{{selected_movie.original_title}}</h1>
     <label>Details: </label><span> {{selected_movie.overview}}</span><br>
     <label>18+: </label><span> {{selected_movie.adult}}</span><br>
     <label>Release Date: </label><span> {{selected_movie.release_date}}</span><br>
     <label>Type/ Genre: </label><span> {{replacer(movie.genre_ids)}}</span><br>
     <label>Score:</label><span> {{selected_movie.vote_average}}</span>
-
-
-
-
 </div>
