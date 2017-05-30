@@ -5,6 +5,7 @@ import {HttpModule, JsonpModule} from '@angular/http';
 import { AppComponent } from './app.component';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import { GenreService } from './genre.service';
+
 import {ROUTER_PROVIDERS} from '@angular/router/src/router_module';
 
 @NgModule({

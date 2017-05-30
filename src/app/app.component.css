@@ -32,8 +32,8 @@ li {
 }
 
 .poster{
-    width: 200px;
-    height: 240px;
+    max-width: 200px;
+    height: 100%;
     max-height: 250px;
     float: left;
     margin-right: 10px;
@@ -67,6 +67,9 @@ p {
 
 }
 .second a, .fa-2x {
+    margin: 5px 5px;
+}
+.pull-right a {
     margin: 5px 20px;
 }
 .title-tag {
