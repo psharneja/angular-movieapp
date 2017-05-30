@@ -10,10 +10,7 @@
     <button class="btn btn-success " (click)="search(movie)"><span class="fa fa-search"> Search...</span></button>
     </div>
 </div>
-<div id="movie_listing" class="container" *ngIf="(selected_movie | json) === ({} | json)" infiniteScroll
-     [infiniteScrollDistance]="1"
-     [infiniteScrollThrottle]="800"
-     (scrolled)="onScroll(movie, moviedata)">
+<div id="movie_listing" class="container" *ngIf="(selected_movie | json) === ({} | json)" >
     <ul *ngIf="moviedata">
         <li *ngFor="let movie of moviedata" >
             <div class="col-sm-6">
