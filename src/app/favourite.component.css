@@ -1,7 +1,7 @@
 .background {
     width: 100%;
     min-height: 500px;
-    background-repeat: no-repeat;
+    background-repeat: repeat-y;
     background-size: cover;
     background-image: url('../assets/images/bg.jpg');
 
