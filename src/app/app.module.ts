@@ -5,18 +5,38 @@ import {HttpModule, JsonpModule} from '@angular/http';
 import { AppComponent } from './app.component';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
 import { MoviesService } from './movies.service';
-
-import {ROUTER_PROVIDERS} from '@angular/router/src/router_module';
-import {DashboardComponent} from './dashboard.component';
+import { RouterModule } from '@angular/router';
+import { DashboardComponent } from './dashboard.component';
+import { FavouriteComponent } from './favourite.component';
 
 @NgModule({
   declarations: [
-    AppComponent, DashboardComponent
+    AppComponent, DashboardComponent, FavouriteComponent
   ],
+
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule, JsonpModule, InfiniteScrollModule
+    HttpModule, JsonpModule, InfiniteScrollModule,
+      RouterModule.forRoot([
+          {
+          path: '',
+          redirectTo: '/dashboard',
+          pathMatch: 'full'
+          },
+          {
+              path: 'dashboard/name',
+              component: DashboardComponent
+          },
+          {
+              path: 'dashboard',
+              component: DashboardComponent
+          },
+          {
+              path: 'favourites',
+              component: FavouriteComponent
+          }
+      ])
   ],
   providers: [ MoviesService ],
   bootstrap: [ AppComponent ]

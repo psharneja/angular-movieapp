@@ -2,14 +2,16 @@
     background-image: url("./material_splash.svg");
     background-size: cover;
     width: 100%;
-    height: 500px;
+    height: 400px;
     text-align: center;
 }
 
-#back-button {
-    width: 30%;
+.back-button {
+    float: right;
     position: relative;
+    width: 10%;
     top: 50px;
+    right: 40px;
 
 }
 
@@ -100,11 +102,18 @@ p {
 .nodata {
     color: white;
     font-size: x-large;
-    margin: auto;
+    margin: 50px auto;
     position: relative;
+    min-height: 50px;
+    text-align: center;
 }
 
 .cover_photo {
     max-width: 80%;
 
 }
+
+label, h1 {
+    color: white;
+}
+

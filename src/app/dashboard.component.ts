@@ -1,7 +1,6 @@
-import { Component, Input, NgModule} from '@angular/core';
-import { Http, Response} from '@angular/http';
-import {BrowserModule} from '@angular/platform-browser';
+import { Component, Input } from '@angular/core';
 import { MoviesService } from './movies.service';
+import 'rxjs/add/operator/switchMap';
 
 @Component({
     selector: 'app-dash-board',
@@ -15,6 +14,7 @@ export class DashboardComponent {
     text = 'Search for a movie here...';
     genre= [];
     selected_movie = {};
+    searchval: string;
 
 
 
@@ -27,20 +27,22 @@ export class DashboardComponent {
     }
 
 
-
-    constructor( private http: Http, private movieserve: MoviesService) {}
+    constructor(private movieserve: MoviesService) {}
 
     search(movie) {
+        this.searchval = movie.value;
         if (movie.value) {
-            return this.movieserve.getMovies(movie).subscribe(data => {
+           return  this.movieserve.getMovies(movie.value).subscribe(data => {
                 this.moviedata = data.results;
             });
+
         }
     }
 
     replacer(genre) {
-        const genrename = [];
-        if (genre) {
+        /* const genrename = [];
+
+
             this.movieserve.getGenre()
                 .subscribe(
                     data => this.genre = data.genres,
@@ -54,12 +56,12 @@ export class DashboardComponent {
 
             });
             return genrename;
-        }
+    */
         // return;
     }
 
-    onScroll(movie) {
-        return this.movieserve.getmoreMovies(movie, ++this.pager).subscribe(data => {
+    onScroll() {
+        return this.movieserve.getmoreMovies(this.searchval, ++this.pager).subscribe(data => {
             (data.results).forEach(d => {
                 this.moviedata.push(d);
             });
