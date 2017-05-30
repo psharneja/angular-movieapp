@@ -1,0 +1,110 @@
+.background {
+    background-image: url("./material_splash.svg");
+    background-size: cover;
+    width: 100%;
+    height: 500px;
+    text-align: center;
+}
+
+#back-button {
+    width: 30%;
+    position: relative;
+    top: 50px;
+
+}
+
+
+.boundingbox {
+    margin: auto;
+    width: 30%;
+    padding-top: 250px;
+    text-align: left;
+    height: auto;
+}
+.boundingbox input {
+    width: 70%;
+    display: inline;
+}
+
+li {
+    text-align: left;
+    text-decoration: none;
+    display: inline;
+}
+
+.poster{
+    max-width: 200px;
+    height: 100%;
+    max-height: 250px;
+    float: left;
+    margin-right: 10px;
+
+
+}
+a {
+    margin-top: 10px;
+    text-decoration: none;
+    cursor: hand;
+}
+a:hover {
+    text-decoration: none;
+    cursor: hand;
+}
+p {
+    width: 500px;
+    text-align: justify;
+}
+
+
+.col-sm-6 {
+    margin-top: 20px;
+    background-color: darkcyan;
+
+}
+.first {
+    max-height: 250px ;
+    min-height: 250px ;
+    overflow: hidden;
+
+}
+.second a, .fa-2x {
+    margin: 5px 5px;
+}
+.pull-right a {
+    margin: 5px 20px;
+}
+.title-tag {
+    display: inline;
+    font-size: 18px;
+    font-family: sans-serif;
+
+}
+.title-tag>a {
+    color: white;
+    size: 18px;
+
+}
+.overview {
+    font-size: 90%;
+    color: white;
+
+}
+.container, .container-fluid {
+    background-color: #009688;
+}
+.genres {
+    font-size: 90%;
+}
+
+
+.nodata {
+    color: white;
+    font-size: x-large;
+    margin: auto;
+    position: relative;
+}
+
+.cover_photo {
+    max-width: 80%;
+
+}

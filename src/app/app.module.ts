@@ -4,20 +4,21 @@ import { FormsModule } from '@angular/forms';
 import {HttpModule, JsonpModule} from '@angular/http';
 import { AppComponent } from './app.component';
 import {InfiniteScrollModule} from 'ngx-infinite-scroll';
-import { GenreService } from './genre.service';
+import { MoviesService } from './movies.service';
 
 import {ROUTER_PROVIDERS} from '@angular/router/src/router_module';
+import {DashboardComponent} from './dashboard.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent, DashboardComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule, JsonpModule, InfiniteScrollModule
   ],
-  providers: [ GenreService ],
+  providers: [ MoviesService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
