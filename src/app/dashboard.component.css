@@ -19,7 +19,7 @@
 .boundingbox {
     margin: auto;
     width: 30%;
-    padding-top: 200px;
+    padding-top: 5%;
     text-align: left;
     height: auto;
 }
@@ -114,7 +114,7 @@ p {
 }
 
 .cover_photo {
-    max-width: 100%;
+    width: 100%;
 
 }
 
@@ -126,7 +126,7 @@ label, h1 {
 @media (max-width: 768px) {
     .boundingbox {
         width: 80%;
-        padding-top: 150px;
+        padding-top: 50px;
         text-align: left;
         height: auto;
         transition: width 2s;
@@ -141,7 +141,7 @@ label, h1 {
 @media (max-width: 500px) {
     .boundingbox {
         width: 100%;
-        padding-top: 100px;
+        padding-top: 0;
         text-align: left;
         height: auto;
         transition: width 2s;

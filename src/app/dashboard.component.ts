@@ -10,7 +10,7 @@ import {MoviesService} from './movies.service';
 })
 export class DashboardComponent {
     moviedata: Array<Object>;
-    pager = 1;
+    pager: number;
     @Input('placeholder')
     text = 'Search for a movie here...';
     genre= [];
@@ -19,16 +19,13 @@ export class DashboardComponent {
     total: number;
 
 
-
     onSelect(movie) {
-        console.log("selct called"+ movie);
         this.selected_movie = movie;
     }
 
     clearSelection() {
         this.selected_movie = null;
     }
-
 
     constructor(private genreserve: GenreService, private movieserve: MoviesService) {
         this.genreserve.getGenre()
@@ -40,6 +37,7 @@ export class DashboardComponent {
 
     search(movie) {
         this.searchval = movie.value;
+        this.pager = 1;
         if (movie.value) {
            return  this.movieserve.getMovies(this.searchval, this.pager).subscribe(data => {
                this.moviedata = data.results; this.total = data.total_pages;
@@ -50,14 +48,7 @@ export class DashboardComponent {
 
     replacer(genre) {
          const genrename = [];
-
-
-           /* this.movieserve.getGenre()
-                .subscribe(
-                    data => this.genre = data.genres,
-                    error => alert(error)
-                );*/
-
+         console.log(genre);
             this.genre.forEach(d => {
                 if (genre.includes(d.id)) {
                     genrename.push(' ' + d.name);
@@ -65,8 +56,6 @@ export class DashboardComponent {
 
             });
             return genrename;
-
-        // return;
     }
 
     onScroll() {
