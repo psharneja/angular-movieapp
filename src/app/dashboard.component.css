@@ -91,8 +91,12 @@ p {
     color: white;
 
 }
-.container, .container-fluid {
+.container {
     background-color: #009688;
+}
+.container-fluid {
+    background-color: #009688;
+    min-height: 800px;
 }
 .genres {
     font-size: 90%;
@@ -109,7 +113,7 @@ p {
 }
 
 .cover_photo {
-    max-width: 80%;
+    max-width: 100%;
 
 }
 

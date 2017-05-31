@@ -3,8 +3,8 @@
 
 
     <div class="boundingbox">
-        <input #movie placeholder="{{text}}" class="form-control" >
-        <button class="btn btn-success " (click)="search(movie)"><span class="fa fa-search"> Search...</span></button>
+        <input #movieholder placeholder="{{text}}" class="form-control" >
+        <button class="btn btn-success " (click)="search(movieholder)"><span class="fa fa-search"> Search...</span></button>
 
     </div>
 
@@ -12,7 +12,7 @@
 </div>
 
 <div id="movie_listing" class="container" *ngIf="(selected_movie | json) === ({} | json)" infiniteScroll
-     [infiniteScrollDistance]="2"
+     [infiniteScrollDistance]="1"
      [infiniteScrollThrottle]="400"
      (scrolled)="onScroll()">
 
@@ -20,8 +20,8 @@
         <li *ngFor="let movie of moviedata" (error)="alert(' No Data Available ')">
             <div class="col-sm-6">
                 <section class="first">
-                    <span class="title-tag" (click)="onSelect(movie)"><a >{{movie.title}}</a></span>
-                    <a><img class="poster" [src]="'https://image.tmdb.org/t/p/w300'+movie.poster_path"   alt={{movie.original_title}}  (click)="onSelect(movie)" onError="this.src='assets/images/bg.jpg';" ></a>
+                    <span class="title-tag" (click)="onSelect(movie)"><a>{{movie.title}}</a></span>
+                    <a><img class="poster" [src]="'https://image.tmdb.org/t/p/w300'+movie.poster_path"   alt={{movie.original_title}}  onError="this.src='assets/images/bg.jpg';"  (click)="onSelect(movie)" ></a>
                     <p class="overview">{{movie.overview}}</p>
                 </section>
                 <section class="second">
@@ -37,14 +37,14 @@
             </div>
         </li>
     </ul>
-    <h2 #a *ngIf="!moviedata" class="nodata">Type a word to search...</h2>
-    <!--<h2 #b  class="nodata">** no more data available **</h2>-->
-    <h2 #c *ngIf="moviedata != undefined" class="nodata">Apologies. we didn't find any data for this query, maybe this movie is still into makings :)</h2>
+    <h2 #a *ngIf="!moviedata" class="nodata"><label><span class="fa fa-hand-pointer-o" aria-hidden="true"></span> Type a word to search.. <span class="fa fa-hand-pointer-o" aria-hidden="true"></span></label></h2>
+    <h2 #c *ngIf="(moviedata !== undefined) || (pager === total) " class="nodata">Aww Crap! No Data, maybe movies are still into making :)</h2>
 
 
 </div>
-<div class="container-fluid" *ngIf="(selected_movie | json) != ({} | json)" >
-    <div class=""><a  class="btn btn-warning pull-right back-button" *ngIf="(selected_movie | json) != ({} | json)" (click)="clearselection();"><span class="fa fa-undo"></span> go back...</a>
+
+<div class="container-fluid" *ngIf="(selected_movie | json) !== ({} | json)" >
+    <div class=""><a  class="btn btn-warning pull-right back-button" *ngIf="(selected_movie | json) != ({} | json)" (click)="clearSelection();"><span class="fa fa-undo"></span> go back...</a>
     </div>
     <a><img class="cover_photo" [src]="'https://image.tmdb.org/t/p/w500'+selected_movie.backdrop_path"   alt={{selected_movie.original_title}}  onError="this.src='assets/images/bg.jpg';" (click)="onSelect(movie)" ></a>
     <h1>{{selected_movie.original_title}}</h1>
