@@ -14,6 +14,9 @@
     right: 40px;
 
 }
+.boundingbox img{
+    width: 100%;
+}
 
 
 .boundingbox {
@@ -27,6 +30,9 @@
     width: 70%;
     min-width: 200px;
     display: inline;
+}
+.boundingbox button {
+    min-width: 25%;
 }
 
 li {
