@@ -5,7 +5,7 @@ import { MoviesService } from './movies.service';
 
 @Component({
     selector: 'app-favourite-board',
-    templateUrl: 'favourite.component.html',
+    templateUrl: './favourite.template.html',
     styleUrls: ['./favourite.component.css'],
 })
 export class FavouriteComponent {

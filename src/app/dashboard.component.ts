@@ -4,7 +4,7 @@ import 'rxjs/add/operator/switchMap';
 
 @Component({
     selector: 'app-dash-board',
-    templateUrl: './dashboard.component.html',
+    templateUrl: './dashboard.template.html',
     styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent {

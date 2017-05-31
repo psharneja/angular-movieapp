@@ -1,0 +1,12 @@
+
+<div class="container-fluid" *ngIf="(selected_movie | json) != ({} | json)" >
+    <div class=""><a  class="btn btn-warning pull-right back-button" *ngIf="(selected_movie | json) != ({} | json)" (click)="clearselection();"><span class="fa fa-undo"></span> go back...</a>
+    </div>
+    <a><img class="cover_photo" [src]="'https://image.tmdb.org/t/p/w500'+selected_movie.backdrop_path"   alt={{selected_movie.original_title}}  onError="this.src='assets/images/bg.jpg';" (click)="onSelect(movie)" ></a>
+    <h1>{{selected_movie.original_title}}</h1>
+    <label>Details: </label><span> {{selected_movie.overview}}</span><br>
+    <label>18+: </label><span> {{selected_movie.adult}}</span><br>
+    <label>Release Date: </label><span> {{selected_movie.release_date}}</span><br>
+    <label>Type/ Genre: </label><span> {{replacer(selected_movie.genre_ids)}}</span><br>
+    <label>Score:</label><span> {{selected_movie.vote_average}}</span>
+</div>
