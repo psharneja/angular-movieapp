@@ -1,4 +1,4 @@
-<div class="background"  *ngIf="(selected_movie | json) == ({} | json)">
+<div class="background"  *ngIf="(!selected_movie)">
 
 
 
@@ -11,7 +11,7 @@
 
 </div>
 
-<div id="movie_listing" class="container" *ngIf="(selected_movie | json) === ({} | json)" infiniteScroll
+<div id="movie_listing" class="container" *ngIf="(!selected_movie)" infiniteScroll
      [infiniteScrollDistance]="1"
      [infiniteScrollThrottle]="400"
      (scrolled)="onScroll()">
@@ -21,7 +21,7 @@
             <div class="col-sm-6">
                 <section class="first">
                     <span class="title-tag" (click)="onSelect(movie)"><a>{{movie.title}}</a></span>
-                    <a><img class="poster" [src]="'https://image.tmdb.org/t/p/w300'+movie.poster_path"   alt={{movie.original_title}}  onError="this.src='assets/images/bg.jpg';"  (click)="onSelect(movie)" ></a>
+                    <a (click)="onSelect(movie)"><img class="poster" [src]="'https://image.tmdb.org/t/p/w300'+movie.poster_path"   alt={{movie.original_title}}  onError="this.src='assets/images/bg.jpg';"   ></a>
                     <p class="overview">{{movie.overview}}</p>
                 </section>
                 <section class="second">
@@ -37,14 +37,15 @@
             </div>
         </li>
     </ul>
+</div>
+<div class="container" *ngIf="(!selected_movie)">
     <h2 #a *ngIf="!moviedata" class="nodata"><label><span class="fa fa-hand-pointer-o" aria-hidden="true"></span> Type a word to search.. <span class="fa fa-hand-pointer-o" aria-hidden="true"></span></label></h2>
-    <h2 #c *ngIf="(moviedata !== undefined) || (pager === total) " class="nodata">Aww Crap! No Data, maybe movies are still into making :)</h2>
 
-
+    <h2 *ngIf="(moviedata !== undefined) || (pager === total)"  class="nodata" > Aww Crap! No Data, maybe movies are still into making :) </h2>
 </div>
 
-<div class="container-fluid" *ngIf="(selected_movie | json) !== ({} | json)" >
-    <div class=""><a  class="btn btn-warning pull-right back-button" *ngIf="(selected_movie | json) != ({} | json)" (click)="clearSelection();"><span class="fa fa-undo"></span> go back...</a>
+<div class="container-fluid" *ngIf="(selected_movie)" >
+    <div class=""><a  class="btn btn-warning pull-right back-button"  (click)="clearSelection();"><span class="fa fa-undo"></span> go back...</a>
     </div>
     <a><img class="cover_photo" [src]="'https://image.tmdb.org/t/p/w500'+selected_movie.backdrop_path"   alt={{selected_movie.original_title}}  onError="this.src='assets/images/bg.jpg';" (click)="onSelect(movie)" ></a>
     <h1>{{selected_movie.original_title}}</h1>

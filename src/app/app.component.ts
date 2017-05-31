@@ -1,6 +1,6 @@
-import {Component, enableProdMode} from '@angular/core';
+import {Component} from '@angular/core';
 
-enableProdMode();
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

@@ -14,18 +14,19 @@ export class DashboardComponent {
     @Input('placeholder')
     text = 'Search for a movie here...';
     genre= [];
-    selected_movie = {};
+    selected_movie = null;
     searchval: string;
     total: number;
 
 
 
     onSelect(movie) {
+        console.log("selct called"+ movie);
         this.selected_movie = movie;
     }
 
     clearSelection() {
-        this.selected_movie = {};
+        this.selected_movie = null;
     }
 
 
