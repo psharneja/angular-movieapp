@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 import { DashboardComponent } from './dashboard.component';
 import { FavouriteComponent } from './favourite.component';
 import {GenreService} from './genre.service';
+import {FavouritesService} from './favourites.service';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import {GenreService} from './genre.service';
           }
       ])
   ],
-  providers: [ MoviesService , GenreService ],
+  providers: [ MoviesService , GenreService, FavouritesService ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }

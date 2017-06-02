@@ -1,10 +1,11 @@
-<div class="background">
-    <ul *ngIf="moviedata">
+<div class="back_pic container-fluid">
+    <ul id="category" *ngIf="genres"><li *ngFor="let category of genre"><a class="btn btn-default">{{category.name}}</a></li></ul>
+    <ul *ngIf="moviedata" class="container" id="back-coloring">
         <li *ngFor="let movie of moviedata" (error)="alert(' No Data Available ')">
             <div class="col-sm-6">
                 <section class="first">
                     <span class="title-tag" (click)="onSelect(movie)"><a >{{movie.title}}</a></span>
-                    <a><img class="poster" [src]="'https://image.tmdb.org/t/p/w300'+movie.poster_path"   alt={{movie.original_title}}  (click)="onSelect(movie)" onError="this.src='assets/images/bg.jpg';" ></a>
+                    <a><img class="poster" [src]="'https://image.tmdb.org/t/p/w300'+movie.poster_path" alt={{movie.original_title}}  (click)="onSelect(movie)" onError="this.src='assets/images/bg.jpg';" ></a>
                     <p class="overview">{{movie.overview}}</p>
                 </section>
                 <section class="second">
@@ -20,6 +21,11 @@
             </div>
         </li>
     </ul>
+    <h2 #c *ngIf="(!moviedata) "  class="nodata" > Aww Crap! No Data! go to search and add some movies to your favourites..<span class="fa fa-smile-o" aria-hidden="true"></span> </h2>
 
 
+
+</div>
+<div>
+<input type="button" (click)="getallGenre()" value="click">
 </div>

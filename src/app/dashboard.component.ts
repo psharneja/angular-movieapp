@@ -48,7 +48,6 @@ export class DashboardComponent {
 
     replacer(genre) {
          const genrename = [];
-         console.log(genre);
             this.genre.forEach(d => {
                 if (genre.includes(d.id)) {
                     genrename.push(' ' + d.name);

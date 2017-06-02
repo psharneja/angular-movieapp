@@ -6,6 +6,7 @@
     text-align: center;
 }
 
+
 .back-button {
     float: right;
     position: relative;
@@ -127,6 +128,13 @@ p {
 label, h1 {
     color: white;
 }
+#category {
+    padding-top: 50px;
+}
+#category li {
+    margin: 2px;
+
+}
 
 
 @media (max-width: 768px) {
@@ -158,4 +166,14 @@ label, h1 {
     .btn-fire {
         width: 100%;
     }
+}
+.back_pic {
+    background-image: url("./material_splash.svg");
+    background-size: cover;
+    width: 100%;
+    text-align: center;
+}
+
+#back-coloring {
+    background-color: transparent;
 }
