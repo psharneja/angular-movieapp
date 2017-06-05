@@ -1,7 +1,7 @@
-<div class="back_pic container-fluid">
-    <ul id="category" *ngIf="genres"><li *ngFor="let category of genre"><a class="btn btn-default">{{category.name}}</a></li></ul>
+<div class="back_pic container-fluid" *ngIf="(!selected_movie)" >
+    <ul id="category" *ngIf="genres"><li *ngFor="let category of genre"><a class="btn btn-default" (click)="categoryCall(category.id)">{{category.name}}</a></li></ul>
     <ul *ngIf="moviedata" class="container" id="back-coloring">
-        <li *ngFor="let movie of moviedata" (error)="alert(' No Data Available ')">
+        <li *ngFor="let movie of movies" (error)="alert(' No Data Available ')">
             <div class="col-sm-6">
                 <section class="first">
                     <span class="title-tag" (click)="onSelect(movie)"><a >{{movie.title}}</a></span>
@@ -13,19 +13,67 @@
                     <span class="genres">{{replacer(movie.genre_ids)}}</span>
 
                     <div class="pull-right">
-                        <!-- <a class="btn btn-info" alt="Remove from Favourites" (click)="onSelect(movie)">know more...</a>
-                     --><a class="btn btn-default" alt="Remove from Favourites"><span class="fa fa-star-o" aria-hidden="true"></span></a>
-                        <a class="btn btn-success" alt="Add to Favourites"><span class="fa fa-star" aria-hidden="true"></span></a>
+                        <a class="btn btn-info" (click)="onSelect(movie)">edit..</a>
+                     <a class="btn btn-default" (click)="deleteFromFav(movie.id)" ><span class="fa fa-star-o" aria-hidden="true"> Remove Favourite</span></a>
                     </div>
                 </section>
             </div>
         </li>
     </ul>
-    <h2 #c *ngIf="(!moviedata) "  class="nodata" > Aww Crap! No Data! go to search and add some movies to your favourites..<span class="fa fa-smile-o" aria-hidden="true"></span> </h2>
-
-
-
+    <h2 #c *ngIf="(moviedata !== undefined) "  class="nodata" > Aww Crap! No Data! go to search and add some movies to your favourites..<span class="fa fa-smile-o" aria-hidden="true"></span> </h2>
 </div>
-<div>
-<input type="button" (click)="getallGenre()" value="click">
+    <div class="container-fluid" *ngIf="(selected_movie)">
+        <a  class="btn btn-warning pull-right back-button"  (click)="clearSelection();"><span class="fa fa-undo"></span> go back...</a>
+
+        <div class="container">
+
+            <a><img class="cover_photo" [src]="'https://image.tmdb.org/t/p/w500'+selected_movie.backdrop_path"   alt={{selected_movie.original_title}}  onError="this.src='assets/images/bg.jpg';" (click)="onSelect(movie)" ></a>
+            <hr>
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"> Title (Can't be edited): </label>
+                    <div class="col-sm-10">
+                        <h2 #title>{{selected_movie.original_title}}</h2>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Details: </label>
+                    <div class="col-sm-10">
+                        <input #details type="text" class="form-control"  value="{{selected_movie.overview}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">18+: </label>
+                    <div class="col-sm-10">
+                        <input #adult type="text" class="form-control" value="{{selected_movie.adult}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Release Date: </label>
+                    <div class="col-sm-10">
+                        <input #release type="text"  class="form-control" value="{{selected_movie.release_date}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Type/ Genre: </label>
+                    <div class="col-sm-10">
+                        <span #genretype >{{replacer(selected_movie.genre_ids)}}</span>
+                    </div>
+                </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">Score: </label>
+                        <div class="col-sm-10">
+                            <input type="text" #score class="form-control" value="{{selected_movie.vote_average}}">
+                        </div>
+                    </div>
+
+            </form>
+
+
+                <a class="btn btn-info pull-right" (click)="updateMovie(selected_movie, details, adult, release, score)">Save Changes <span class="fa fa-check"></span></a>
+
+
+        </div>
+
+
 </div>

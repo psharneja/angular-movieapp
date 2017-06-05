@@ -27,12 +27,11 @@
                 </section>
                 <section class="second">
                     <span class="fa fa-film fa-2x"></span>
-                    <span class="genres">{{replacer(movie.genre_ids)}}</span>
+                    <span class="genres" >{{replacer(movie.genre_ids) }}</span>
 
-                    <div class="pull-right">
-                        <a class="btn btn-default" alt="Remove from Favourites"><span class="fa fa-star-o" aria-hidden="true"></span></a>
-                        <a class="btn btn-success" alt="Add to Favourites"><span class="fa fa-star" aria-hidden="true"></span></a>
-                    </div>
+                    <div class="pull-right" >
+                        <a class="btn btn-info" (click)="onSelect(movie)" >Know more <span class="fa fa-arrow-right" aria-hidden="true"></span></a>
+                      </div>
                 </section>
             </div>
         </li>
@@ -40,11 +39,14 @@
 </div>
 <div class="container" *ngIf="(!selected_movie)">
     <h2 #a *ngIf="!moviedata" class="nodata"><label><span class="fa fa-hand-pointer-o" aria-hidden="true"></span> Type a word to search.. <span class="fa fa-hand-pointer-o" aria-hidden="true"></span></label></h2>
-    <h2 #c *ngIf="(moviedata !== undefined)  "  class="nodata" > Aww Crap! <span class="fa fa-frown-o" aria-hidden="true"></span> No Data, maybe movies are still into making <span class="fa fa-smile-o" aria-hidden="true"></span> </h2>
+    <h2 #c *ngIf="(moviedata !== undefined)"  class="nodata" > Aww Crap! <span class="fa fa-frown-o" aria-hidden="true"></span> No Data, maybe movies are still into making <span class="fa fa-smile-o" aria-hidden="true"></span> </h2>
 </div>
 
-<div class="container-fluid" *ngIf="(selected_movie)" >
+<div class="container-fluid" *ngIf="(selected_movie)">{{(favcheck(selected_movie.id))}}
     <a  class="btn btn-warning pull-right back-button"  (click)="clearSelection();"><span class="fa fa-undo"></span> go back...</a>
+    <a #falsefav class="btn btn-default pull-right fav-button" *ngIf="!(this.favourite)" (click)="deleteFromFav(selected_movie.id)" ><span class="fa fa-star-o" aria-hidden="true"></span></a>
+    <a #truefav class="btn btn-success pull-right fav-button" *ngIf="!(this.favourite)" (click)="addToFav(selected_movie)" ><span class="fa fa-star" aria-hidden="true"></span></a>
+
 
     <div class="container">
 

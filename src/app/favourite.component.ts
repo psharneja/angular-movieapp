@@ -14,35 +14,58 @@ export class FavouriteComponent implements OnInit {
     moviedata: Array<Object>;
     genre;
     genres = new Array;
+    movies;
+    selected_movie = null;
 
 
     constructor(private favserve: FavouritesService, private genreserve: GenreService) {
+
+    this.searcher();
+
+    }
+
+    ngOnInit() {
+        return  this.favserve.getMovies().subscribe(data => {
+            this.moviedata = data; this.movies = this.moviedata;
+        });
+    }
+    searcher() {
 
         this.genreserve.getGenre()
             .subscribe(
                 data => this.genre = data.genres,
                 error => alert(error)
             );
-
-
+    }
+    onSelect(movie) {
+        this.selected_movie = movie;
+    }
+    clearSelection() {
+        this.selected_movie = null;
     }
 
-    ngOnInit() {
-        return  this.favserve.getMovies().subscribe(data => {
-            this.moviedata = data;
-        });
-    }
+
 
 
     replacer(genre) {
-        const genrename = [];
+        const genrename = new Array;
+        if (genre) {
         this.genre.forEach(d => {
             if (genre.includes(d.id)) {
                 genrename.push(' ' + d.name);
             }
 
-        });
+         });
+        }
         return genrename;
+    }
+
+    categoryCall(category) {
+        this.search();
+
+        this.moviedata.forEach((d, i) => {
+           // console.log(Object.keys(d));
+        });
     }
 
     search() {
@@ -52,6 +75,24 @@ export class FavouriteComponent implements OnInit {
              });
 
         }
+
+        deleteFromFav(movie) {
+         this.favserve.deleteMovies(movie).subscribe(data => {
+             alert('This has now been removed from your favourites\' list');
+             this.searcher();
+
+        });
+
+        }
+    updateMovie(movie, details, adult, release, score) {
+        movie.overview = details.value;
+        movie.adult = adult.value;
+        movie.release_date = release.value;
+        movie.vote_average = score.value;
+        return this.favserve.updateMovies(movie).subscribe(data => {
+            alert('Record has been updated');
+        });
+    }
 
 }
 
